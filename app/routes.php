@@ -1,5 +1,7 @@
 <?php
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -9,26 +11,24 @@
 | It's a breeze. Simply tell Laravel the URIs it should respond to
 | and give it the Closure to execute when that URI is requested.
 |
-
 */
-Route::resource('users','UsersController');
-//Route::get('users','UsersController@index');
-//Route::get('users/{username}','UsersController@show');
-// Route::get('users',function()
-// {
-// 	$users=User::all();
+// Route::get('users','UsersController@index');
+// Route::get('users' ,'UsersController@create');
 
-// 	//return View::make('users/index')->with('users',$users);
-// 	//or 
-// 	//return View::make('users/index')->withUsers($users);
-// 	//or
-// 	return View::make('users/index',['users'=>$users]);
-// });
+// // Route::get('users',function()
+// // {
+// // 	$users=User::all();
+
+// // 	//return View::make('users/index')->with('users',$users);
+// // 	//or 
+// // 	//return View::make('users/index')->withUsers($users);
+// // 	//or
+// // 	return View::make('users/index',['users'=>$users]);
+// // });
 
 // Route::get('users/{username}',function($username)
 // {
-// 	$user=User::whereUsername($username)->first();// select * from users where username =USERNAME LIMIT 1
-// 	return View::make('users/show',['user'=>$user]);
+	 
 // });
 
 
@@ -70,4 +70,19 @@ Route::resource('users','UsersController');
 // 	// return User::orderBy('username','asc')->take(2)->get();
 // });
 
- 
+ // Route::get('/',function()
+
+ // {
+
+ // 	User::create([
+ // 		'username'=>'Jeffreyway',
+ // 		'password'=>Hash::make('changeme'),
+ // 		'email'=>'jeffreyway@laracasts.com'
+ // 		]);
+ // 	Return 'Done';
+ // });
+Route::resource('sessions','SessionsController');
+
+ Route::get('login','SessionsController@create');
+ Route::get('logout','SessionsController@destroy');
+ 	

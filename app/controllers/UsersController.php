@@ -1,67 +1,60 @@
-<?php
-
+ <?php 
 class UsersController extends \BaseController {
  
+	protected $user;
+
+	public function __construct(User $user)
+
+	{
+
+		$this->user=$user;
+	}
 
  	public function index()
  	{
-
- 	$users=User::all();
+ 	$users=$this->user->all();
 
  	return View::make('users.index',['users'=>$users]);
+
  	} 
 
- 	public function show($username)
 
+ 	public function show ($username)
+ 	
  	{
-
- 		$user=User::whereUsername($username)->first();
+ 	
+ 		$user=$this->user->whereUsername($username)->first();
 
  		return View::make('users.show',['user'=>$user]);
-
  	}
 
  	public function create()
+ 	
  	{
- 		//return'show form to create user';
+ 		
  		return View::make('users.create');
  	}
 
  	public function store()
- 	{
-
  	
- 		//return 'create the new user given the post data';
- 		//return Input::all();
- 		//return Input::get('username');
- 		// for Validation
- 		// $validation=Validator::make(Input::all(),User::$rules);
- 		// if($validation->fails()) 
- 		// 	{
- 		// 		//return 'failed validation';
- 		// 		return Redirect::back()->withInput()->withErrors($validation->messages());
- 		// 	}
- 		// $user= new User;
-
- 		// $user->username=Input::get('username');
- 		// $user->password=Hash::make(Input::get('password'));
- 		// $user->save();
- 		// return Redirect::route('users.index');
- 		if(!User::isValid(Input::all()))
+ 	{
+ 		$input=Input::all();
+ 		if( !$this->user->fill($input)->isValid())
+ 		//return $this->user->toArray();
+ 		//if(! $this->user->isValid($input=Input::all()))
  		{
  		
- 			return Redirect::back()->withInput()->withErrors(User::$errors);
+ 		return Redirect::back()->withInput()->withErrors($this->user->errors);
  		
  		}
- 		// $validation=Validator::make(Input::all(),User::$rules);
+ 		// if($validation->fails())  
+ 		// {
  		
- 		$user= new User;
-
- 		$user->username=Input::get('username');
- 		$user->password=Hash::make(Input::get('password'));
- 		$user->save();
-
+ 		// 	return Redirect::back()->withInput()->withErrors($validation->messages());
+ 		 
+ 		// } 
+ 		//$this->user->create($input);
+ 		$this->user->save();
  		return Redirect::route('users.index');
  	}
-
 }

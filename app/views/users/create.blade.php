@@ -8,7 +8,6 @@
 	
 	<div>
 		{{ Form::label('username','Username:')	}}
-		<!-- {{	Form::input('text','username')	}}  -->
 		{{ Form::text('username')	}}
 		{{ $errors->first('username')
 		}}
@@ -16,12 +15,11 @@
 
 	<div>
 		{{ Form::label('password','Password:')	}}
-		<!-- {{	Form::input('text','username')	}}  -->
 		{{ Form::password('password')	}}
 		{{ $errors->first('password')	}}
 	</div>
 
-	<div>{{	Form::submit('create User')	}}</div>
+	<div>{{	Form::submit('Create User')	}}</div>
 
 {{ Form::close() }}
 

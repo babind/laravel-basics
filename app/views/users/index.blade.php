@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1> All Users</h1>
+<h1> All Users</h1>     
 
 @if($users->count())
 
