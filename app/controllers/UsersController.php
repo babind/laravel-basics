@@ -39,8 +39,8 @@ class UsersController extends \BaseController {
  	
  	{
  		$this->user->fill(Input::all());
- 		 return $this->user->toArray();
- 			if(!$this->user->isValid($input=Input::all()))
+
+ 			if(!$this->user->isValid())
  		 	{
  		 		return Redirect::back()->withInput()->withErrors($this->user->errors);
  		 		}
