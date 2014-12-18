@@ -17,7 +17,7 @@ class SessionsController extends \BaseController{
 		{
 			return"Welcome". Auth::user()->username;
 		}
-		return 'Failed';
+		return 
 	}
 }
 

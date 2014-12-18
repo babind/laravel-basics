@@ -10,8 +10,8 @@
 
 	{{ Form::open(['route'=>'sessions.store'])}}
 
-	<div>
-	{{ Form::label('email','Email:')	}}
+	<div class="form-group">
+	{{Form::label('email','Email:')	}}
 	{{Form::email('email')	}}
 	</div>
 

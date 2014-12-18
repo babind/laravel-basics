@@ -38,23 +38,43 @@ class UsersController extends \BaseController {
  	public function store()
  	
  	{
- 		$input=Input::all();
- 		if( !$this->user->fill($input)->isValid())
- 		//return $this->user->toArray();
- 		//if(! $this->user->isValid($input=Input::all()))
- 		{
+ 			if(! User::isValid(Input::all()))
+ 		 	{
+ 		 		return Redirect::back()->withInput()->withErrors(User::$errors);
+ 		 		}
+ 		 		$user= new User;
+
+ 		$user->username=Input::get('username');
+ 			$user->password=Hash::make(Input::get('passwpord'));
+ 			$user->save();
+
  		
- 		return Redirect::back()->withInput()->withErrors($this->user->errors);
- 		
- 		}
- 		// if($validation->fails())  
- 		// {
- 		
- 		// 	return Redirect::back()->withInput()->withErrors($validation->messages());
- 		 
- 		// } 
- 		//$this->user->create($input);
- 		$this->user->save();
  		return Redirect::route('users.index');
  	}
+
+ 	public function remind()
+ 	{
+ 		$validation=Validator::make(
+ 			array(
+ 				'name'=>Input::get('name'),
+ 				'email'=>Input::get('email'),
+ 				),
+ 			array(
+ 				'name'=>array('required','alpha_dash'),
+ 				'email'=>array('required','email'),
+ 				)
+ 			);
+ 		if($validation->fails()){
+ 			$errors=$validation->messages();
+
+ 		}
+ 		/* Display errors
+ 		 */
+ 		if(!empty($errors)){
+ 			foreach($errors->all() as $error){
+ 				echo '<div class="error">'.$error.'<div>';
+ 			}
+ 		}
+ 	}
+
 }
