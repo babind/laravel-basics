@@ -20,7 +20,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	'username'=>'required',
 	'password'=>'required'
 	];
-	 public static $errors;
+	 public $errors;
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
@@ -38,7 +38,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	// 	return false; 
 	// } 
 
-	 public static function isValid($data)
+	 public   function isValid($data)
 	 	
 	 	{
 	
@@ -47,7 +47,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		{
 			return true;
 		}
-		static::$errors=$validation->messages();
+		$this->errors=$validation->messages();
 	 	return false;
 	 }
 }
