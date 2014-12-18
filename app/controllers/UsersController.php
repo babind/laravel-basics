@@ -38,13 +38,13 @@ class UsersController extends \BaseController {
  	public function store()
  	
  	{
- 		$this->user->fill(Input::all());
+ 		$input=Input::all();
 
- 			if(!$this->user->isValid())
+ 			if(!$this->user->fill($input)->isValid())
  		 	{
  		 		return Redirect::back()->withInput()->withErrors($this->user->errors);
  		 		}
- 		 	$this->user->create($input);
+ 		 	$this->user->save();
 
  		
  		return Redirect::route('users.index');
