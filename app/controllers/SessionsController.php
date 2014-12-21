@@ -17,7 +17,14 @@ class SessionsController extends \BaseController{
 		{
 			return"Welcome". Auth::user()->username;
 		}
-		return 
+		return View::make('sessions.destroy');
+	}
+
+	public function destroy()
+	{
+		Auth::logout();
+		
+		return View::make('users.create');	
 	}
 }
 

@@ -1,13 +1,17 @@
 <!doctype html>
 <html>
-	<head>
+	<head lang="en">
 		<meta charset="utf-8">
 	</head>
 <body>
   
 	
-	@yield('content')
 	
+
+	{{HTML::script("js/jquery.js")}}
+	{{HTML::script("js/bootstrap.js")}}
+	{{HTML::style("css/bootstrap.css")}}
+	@yield('content')
 </body> 
  
 </html>
